@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 //Charge request, mapping, and  direction host front-end implement
 @RestController
 @RequestMapping("experience")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "https://portafolioaf-30343.web.app")
 public class ContrExp {
    //instance Experience  Service
 @Autowired 

@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.portfolioB.AF.AfApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 22.74 s - in com.portfolioB.AF.AfApplicationTests
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 34.209 s - in com.portfolioB.AF.AfApplicationTests
