@@ -10,7 +10,9 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,7 +34,15 @@ public ResponseEntity <List<Projects>> list() {
     return new ResponseEntity(list, HttpStatus.OK);
     
 }
+@GetMapping("/detail/{id}")
+ public ResponseEntity<Projects> getById(@PathVariable("id") int id){
+     if(!projService.existsById(id))
+         return new ResponseEntity(new Mensaje("no existe"), HttpStatus.NOT_FOUND);
+     Projects proj= projService.getOne(id).get();
+     return new ResponseEntity(proj, HttpStatus.OK);
+ }
 
+@PreAuthorize("hasRole('ADMIN')")
 @PostMapping("/create")
 public ResponseEntity<?> create(@RequestBody DtoProj dtoproj) {
     if(StringUtils.isBlank(dtoproj.getNameP()))
@@ -45,8 +55,8 @@ public ResponseEntity<?> create(@RequestBody DtoProj dtoproj) {
     return new ResponseEntity(new Mensaje ("Proyecto agregado"), HttpStatus.OK);
     
 }
-
-@PutMapping("/update/(id)")
+@PreAuthorize("hasRole('ADMIN')")
+@PutMapping("/update/{id}")
 public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody DtoProj dtoproj) {
     //validamos si existe el ID
     if(!projService.existsById(id))
@@ -70,6 +80,8 @@ public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody DtoProj
 
 }
 
+@PreAuthorize("hasRole('ADMIN')")
+@DeleteMapping("delete/{id}")        
 public ResponseEntity<?> delete(@PathVariable("id") int id) {
     //validamos si existe el ID
     if(!projService.existsById(id))

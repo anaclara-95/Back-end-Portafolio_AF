@@ -20,7 +20,7 @@ public class IPersonaService {
         return iPersonaRepository.findAll();
         
 }
-     public Optional<Persona> getOne(long id) {
+     public Optional<Persona> getOne(int id) {
        return iPersonaRepository.findById(id);
        
     }
@@ -35,12 +35,12 @@ public class IPersonaService {
         
     }
     
-    public void delete (long id) {
+    public void delete (int id) {
          iPersonaRepository.deleteById(id);
         
     }
     
-    public boolean existsById(long id){
+    public boolean existsById(int id){
         return iPersonaRepository.existsById(id);
         
     }

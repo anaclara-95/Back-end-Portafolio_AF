@@ -9,14 +9,14 @@ public class DtoSkills {
     @NotBlank
     private String nameSk;
     @NotBlank
-    private String porcS;
+    private int porcS;
     
     //constructores
 
     public DtoSkills() {
     }
 
-    public DtoSkills(String nameSk, String porcS) {
+    public DtoSkills(String nameSk, int porcS) {
         this.nameSk = nameSk;
         this.porcS = porcS;
     }
@@ -33,11 +33,11 @@ public class DtoSkills {
         this.nameSk = nameSk;
     }
 
-    public String getPorcS() {
+    public int getPorcS() {
         return porcS;
     }
 
-    public void setPorcS(String porcS) {
+    public void setPorcS(int porcS) {
         this.porcS = porcS;
     }
 

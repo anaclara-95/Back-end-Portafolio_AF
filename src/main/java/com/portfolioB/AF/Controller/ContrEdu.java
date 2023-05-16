@@ -8,7 +8,9 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,6 +38,7 @@ public class ContrEdu {
 
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/create")
     @SuppressWarnings("SuspiciousIndentAfterControlStatement")
     public ResponseEntity<?> create(@RequestBody DtoEdu dtoedu) {
@@ -51,8 +54,15 @@ public class ContrEdu {
 
         return new ResponseEntity(new Mensaje("Institución educativa agregada"), HttpStatus.OK);
     }
-
-    @PutMapping("update/(id)")
+@GetMapping("/detail/{id}")
+ public ResponseEntity<Education> getById(@PathVariable("id") int id){
+     if(!eduService.existsById(id))
+         return new ResponseEntity(new Mensaje("no existe"), HttpStatus.NOT_FOUND);
+     Education edu= eduService.getOne(id).get();
+     return new ResponseEntity(edu, HttpStatus.OK);
+ }
+    @PreAuthorize("hasRole('ADMIN')")
+    @PutMapping("update/{id}")
     public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody DtoEdu dtoedu) {
         if (!eduService.existsById(id)) {
             return new ResponseEntity(new Mensaje("El ID no existe"), HttpStatus.BAD_REQUEST);
@@ -78,6 +88,8 @@ public class ContrEdu {
 
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> delete(@PathVariable("id") int id) {
         if (!eduService.existsById(id)) {
             return new ResponseEntity(new Mensaje("El ID no existe"), HttpStatus.BAD_REQUEST);

@@ -54,8 +54,8 @@ return new ResponseEntity(new Mensaje("Persona agregada"), HttpStatus.OK);
 
 }*/
 @PreAuthorize("hasRole('ADMIN')")
-@PutMapping("/update/(id)")
-public ResponseEntity<?> update(@PathVariable("id)") int id, @RequestBody DtoPersona dtoper){
+@PutMapping("/update/{id}")
+public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody DtoPersona dtoper){
     //validamos si existe el ID
     if(!iPersonaService.existsById(id))
         return new ResponseEntity(new Mensaje("El ID no existe"), HttpStatus.BAD_REQUEST);
@@ -71,6 +71,7 @@ public ResponseEntity<?> update(@PathVariable("id)") int id, @RequestBody DtoPer
     per.setLastName(dtoper.getLastName());
     per.setBirth(dtoper.getBirth());
     per.setEmail(dtoper.getEmail());
+    per.setDescP(dtoper.getDescP());
     per.setImgPer(dtoper.getImgPer());
     
     iPersonaService.save(per);

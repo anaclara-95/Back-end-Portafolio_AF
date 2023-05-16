@@ -15,14 +15,14 @@ public class Skills {
     @NotNull
     private String nameSk;
     @NotNull
-    private String porcS;
+    private int porcS;
     
     //Constructor
 
     public Skills() {
     }
 
-    public Skills(String nameSk, String porcS) {
+    public Skills(String nameSk, int porcS) {
         this.nameSk = nameSk;
         this.porcS = porcS;
     }
@@ -48,11 +48,11 @@ public class Skills {
         this.nameSk = nameSk;
     }
 
-    public String getPorcS() {
+    public int getPorcS() {
         return porcS;
     }
 
-    public void setPorcS(String porcS) {
+    public void setPorcS(int porcS) {
         this.porcS = porcS;
     }
 

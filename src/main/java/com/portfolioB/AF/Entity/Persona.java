@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
 public class Persona {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private int id;
     @NotNull
     private String name;
     @NotNull
@@ -20,6 +20,8 @@ public class Persona {
     @NotNull
     private String email;
     @NotNull
+    private String descP;
+    @NotNull
     private String imgPer;
     
 //constructor
@@ -27,11 +29,12 @@ public class Persona {
     public Persona() {
     }
 
-    public Persona(String name, String lastName, String Birth, String email, String imgPer) {
+    public Persona(String name, String lastName, String Birth, String email, String descP , String imgPer) {
         this.name = name;
         this.lastName = lastName;
         this.Birth = Birth;
         this.email = email;
+        this.descP= descP;
         this.imgPer = imgPer;
     }
 
@@ -40,11 +43,11 @@ public class Persona {
 
     //getters && setters
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
     
@@ -88,6 +91,14 @@ public class Persona {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getDescP() {
+        return descP;
+    }
+
+    public void setDescP(String descP) {
+        this.descP = descP;
     }
     
     

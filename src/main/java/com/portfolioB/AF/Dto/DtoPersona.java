@@ -15,6 +15,8 @@ private String Birth;
 @NotBlank
 private String email;
 @NotBlank
+private String descP;
+@NotBlank
 private String imgPer;
 
 //Contructores
@@ -22,11 +24,12 @@ private String imgPer;
     public DtoPersona() {
     }
 
-    public DtoPersona(String name, String lastName, String Birth, String email, String imgPer) {
+    public DtoPersona(String name, String lastName, String Birth,String descP , String email, String imgPer) {
         this.name = name;
         this.lastName = lastName;
         this.Birth = Birth;
         this.email = email;
+        this.descP= descP;
         this.imgPer = imgPer;
     }
 
@@ -70,6 +73,14 @@ private String imgPer;
 
     public void setImgPer(String imgPer) {
         this.imgPer = imgPer;
+    }
+
+    public String getDescP() {
+        return descP;
+    }
+
+    public void setDescP(String descP) {
+        this.descP = descP;
     }
     
 
